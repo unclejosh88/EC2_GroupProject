@@ -1,0 +1,92 @@
+﻿@model DeductBnsViewModel
+
+
+@{
+
+    ViewData["Title"] = "Pay Bill";
+
+}
+
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+</style>
+
+
+<div class="container" style="margin-left:200px">
+
+  
+    <form method="post">
+
+        <div style="margin-top:50px" class="form-row">
+
+            <div class="form-group col-md-4" >
+
+                <label asp-for="bills.AmountDue">Amount Due  </label>
+
+                <input asp-for="bills.AmountDue" class="form-control" disabled  />
+
+                <span asp-validation-for="bills.AmountDue"> </span>
+
+
+
+            </div>
+
+        </div>
+
+        <div style="margin-top:50px" class="form-row">
+
+            <div class="form-group col-md-4">
+
+                <label asp-for="CardNum">Card Number  </label>
+
+                <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" asp-for="CardNum" maxlength="12" placeholder="xxxx-xxxx-xxxx-xxxx" class="form-control" />
+
+                <span asp-validation-for="CardNum"> </span>
+
+
+
+            </div>
+
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group col-md-4">
+
+
+                <label asp-for="Amt">  Amount</label>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                    </div>
+                    <input asp-for="Amt" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                    </div>
+                </div>
+
+                <span asp-validation-for="Amt"> </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+
+            <button type="submit" style="width:150px" class=" btn btn-sm  btn-outline-success"> Pay </button>
+
+        </div>
+
+
+    </form>
+</div>
+
+

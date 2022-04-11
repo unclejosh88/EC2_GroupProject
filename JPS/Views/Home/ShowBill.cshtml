@@ -1,0 +1,98 @@
+﻿@model IEnumerable<JPS.Models.Bill>
+
+@{
+    ViewData["Title"] = "ShowBill";
+}
+
+<h1 class="display-4 text-dark fw-bold text-center"> Bills</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GenerationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PremisesNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountDue)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            if (item.PremisesNumber == User.Identity.Name && item.AmountDue != 0)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GenerationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DueDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PremisesNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AmountDue)
+                    </td>
+                    <td>
+                        <a asp-action="PayBill" asp-route-id="@item.BillId"> Pay Bill</a>
+
+                    </td>
+                </tr>
+            }
+
+
+            else if (item.PremisesNumber == User.Identity.Name && item.AmountDue == 0)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GenerationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DueDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PremisesNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AmountDue)
+                    </td>
+                    <td>
+                        <h5 class="text-success fw-bold"> Paid </h5>
+
+                    </td>
+                </tr>
+
+            }
+        }
+    </tbody>
+</table>
